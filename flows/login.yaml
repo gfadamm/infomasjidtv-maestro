@@ -1,0 +1,33 @@
+appId: ${APP_ID}
+name: 'Login'
+tags:
+  - smoke
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    commands:
+      - extendedWaitUntil:
+          visible: "Assalamulaikum"
+          timeout: 20000
+- repeat:
+    times: 2
+    commands:
+      - swipe:
+          direction: LEFT
+- tapOn: "Sign in with Google"
+- tapOn: ${EMAIL}
+- extendedWaitUntil:
+    visible: "Jadwal Shalat hari ini"
+    timeout: 20000
+- assertVisible: "Jadwal Shalat hari ini"
+
+
+
+
+
+
+    
+
+
+

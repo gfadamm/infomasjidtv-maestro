@@ -9,3 +9,5 @@ build/maestro-results.xml
 
 # Local Maestro files, if any are created in the project
 .maestro/screenshots/
+
+**/.DS_Store

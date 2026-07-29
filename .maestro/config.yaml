@@ -1,0 +1,4 @@
+excludeTags:
+  - flaky
+  - manual
+testOutputDir: build/maestro-results

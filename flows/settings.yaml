@@ -1,0 +1,28 @@
+appId: ${APP_ID}
+name: 'Settings'
+tags:
+  - smoke
+---
+- launchApp:
+    clearState: true
+- evalScript: ${output.randomName = 'Mosque ' + faker.lorem().characters(5)}
+- runFlow: "../shared/login.yaml"
+- tapOn: ""
+- tapOn: "Pengaturan"
+- tapOn: 
+    id: 'mosqueName'
+- eraseText
+- inputText: ${output.randomName}
+- tapOn: "Simpan"
+- assertVisible: "Pengaturan berhasil disimpan"
+- tapOn: "OK"
+- tapOn: ""
+- tapOn: "Beranda"
+- assertVisible: ${output.randomName}
+
+
+
+
+
+
+
