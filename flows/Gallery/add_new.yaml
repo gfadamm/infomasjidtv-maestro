@@ -1,0 +1,35 @@
+appId: ${APP_ID}
+name: 'Settings'
+tags:
+  - smoke
+---
+- runFlow: ../../shared/setup_media.yaml
+- launchApp:
+    clearState: true
+- runFlow: "../../shared/login.yaml"
+- evalScript: ${output.randomName = 'Mosque ' + faker.lorem().characters(5)}
+- tapOn: ""
+- tapOn: "Galeri"
+- tapOn: ""
+- tapOn:
+    id: "galleryTitle"
+- inputText: ${output.randomName}
+- runFlow: "../../shared/pick_first_image.yaml"
+- tapOn:
+    id: "galleryText"
+- inputRandomText:
+    length: 60
+- tapOn:
+    id: "galleryLayout"
+- tapOn: "Right Sidebar"
+- tapOn: "Simpan"
+- assertVisible: "Media berhasil ditambahkan ke Galeri"
+- tapOn: "OK"
+- assertVisible: ${output.randomName}
+
+
+
+
+
+
+

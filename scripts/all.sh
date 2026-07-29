@@ -27,5 +27,5 @@ maestro --device ${DEVICE_ID} test \
   --format html \
   --output "$PROJECT_DIR/build/maestro-report.html" \
   -e APP_ID="$APP_ID" \
-  -e EMAIL="$TEST_EMAIL" \
+  -e TEST_EMAIL="$TEST_EMAIL" \
   "$PROJECT_DIR/flows"

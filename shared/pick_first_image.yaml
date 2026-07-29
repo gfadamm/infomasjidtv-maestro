@@ -1,0 +1,36 @@
+# pick_first_image.yaml
+# Requirements: Images must already exist in the device gallery
+# Strategy: Attempt platform-specific selectors with 'optional: true'
+
+appId: ${APP_ID}
+---
+# Step 1: Android Media Selection
+# Different Android versions use different underlying file managers.
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      # Targets the modern Android SDK 33/34 Media Provider
+      - doubleTapOn: ""
+      - tapOn: 
+          text: "Foto diambil pada .*"
+          index: 0
+      - tapOn: "Selesai"
+
+# Step 2: iOS Media Selection
+# iOS 18 introduced new grid layouts, while older versions rely on accessibility labels.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      # Targets the new iOS 18 grid layout
+      - tapOn:
+          id: 'PXGGridLayout-Info'
+          index: 0
+          optional: true
+      
+      # Fallback for iOS 17 and below using an accessibility label regex
+      - tapOn:
+          text: 'Photo, .*'
+          index: 0
+          optional: true

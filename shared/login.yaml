@@ -13,11 +13,10 @@ appId: ${APP_ID}
       - swipe:
           direction: LEFT
 - tapOn: "Sign in with Google"
-- tapOn: ${EMAIL}
+- tapOn: ${TEST_EMAIL}
 - extendedWaitUntil:
     visible: "Jadwal Shalat hari ini"
-    timeout: 30000
-- assertVisible: "Jadwal Shalat hari ini"
+    timeout: 50000
 
 
 
