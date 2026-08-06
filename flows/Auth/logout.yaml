@@ -1,0 +1,28 @@
+appId: ${APP_ID}
+name: 'Add New Gallery'
+tags:
+  - smoke
+---
+- runFlow: ../../subflows/setup_media.yaml
+- launchApp:
+    clearState: true
+- runFlow: "../../subflows/login.yaml"
+- tapOn:
+    id: "openDrawerButton"
+- tapOn: "Keluar"
+- assertVisible: "Keluar"
+- assertVisible: "Apakah anda yakin akan keluar dari aplikasi ini?"
+- tapOn: "KEMBALI"
+- tapOn: "Keluar"
+- tapOn:
+    text: "KELUAR"
+    index: 1
+- assertVisible: "Assalamulaikum"
+
+
+
+
+
+
+
+

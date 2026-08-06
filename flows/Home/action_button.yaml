@@ -1,0 +1,24 @@
+appId: ${APP_ID}
+name: 'Home - check action button is working'
+tags:
+  - smoke
+---
+- launchApp:
+    clearState: true
+- runFlow: "../../subflows/login.yaml"
+- swipe:
+    direction: DOWN
+- tapOn:
+    id: "editSettingsButton"
+- assertVisible: "Nama Masjid"
+- tapOn:
+    id: "openDrawerButton"
+- tapOn: "Beranda"
+- tapOn:
+    id: "editPrayerTimesButton"
+- assertVisible: "Imsak"
+
+
+
+
+

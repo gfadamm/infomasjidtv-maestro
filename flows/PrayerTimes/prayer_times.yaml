@@ -4,7 +4,7 @@ name: 'Prayer Times'
 - launchApp:
     clearState: true
 - evalScript: ${output.randomName = 'Mosque ' + faker.lorem().characters(5)}
-- runFlow: "../../shared/login.yaml"
+- runFlow: "../../subflows/login.yaml"
 - tapOn:
     text: ""
     index: 1

@@ -6,6 +6,9 @@ build/maestro-results/
 build/maestro-debug/
 build/maestro-report.html
 build/maestro-results.xml
+allure-report/
+allure-results/
+
 
 # Local Maestro files, if any are created in the project
 .maestro/screenshots/

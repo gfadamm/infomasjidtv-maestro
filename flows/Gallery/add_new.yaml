@@ -1,12 +1,12 @@
 appId: ${APP_ID}
-name: 'Settings'
+name: 'Add New Gallery'
 tags:
   - smoke
 ---
-- runFlow: ../../shared/setup_media.yaml
+- runFlow: ../../subflows/setup_media.yaml
 - launchApp:
     clearState: true
-- runFlow: "../../shared/login.yaml"
+- runFlow: "../../subflows/login.yaml"
 - evalScript: ${output.randomName = 'Mosque ' + faker.lorem().characters(5)}
 - tapOn: ""
 - tapOn: "Galeri"
@@ -14,7 +14,7 @@ tags:
 - tapOn:
     id: "galleryTitle"
 - inputText: ${output.randomName}
-- runFlow: "../../shared/pick_first_image.yaml"
+- runFlow: "../../subflows/pick_first_image.yaml"
 - tapOn:
     id: "galleryText"
 - inputRandomText:

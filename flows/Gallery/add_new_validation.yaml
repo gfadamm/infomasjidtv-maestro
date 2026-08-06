@@ -1,0 +1,32 @@
+appId: ${APP_ID}
+name: 'Add New Gallery - Validation'
+tags:
+  - smoke
+---
+- runFlow: ../../subflows/setup_media.yaml
+- launchApp:
+    clearState: true
+- runFlow: "../../subflows/login.yaml"
+- tapOn: ""
+- tapOn: "Galeri"
+- tapOn: ""
+- tapOn: "Simpan"
+- assertVisible: "Judul belum di isi\nMedia belum di tambahkan"
+- tapOn: "OK"
+- evalScript: ${output.randomName = 'Mosque ' + faker.lorem().characters(5)}
+- tapOn:
+    id: "galleryTitle"
+- inputText: ${output.randomName}
+- tapOn: "Simpan"
+- assertVisible: "Kesalahan"
+- assertVisible: "Media belum di tambahkan"
+- assertNotVisible: "Judul belum di isi\nMedia belum di tambahkan"
+- tapOn: "OK"
+
+
+
+
+
+
+
+

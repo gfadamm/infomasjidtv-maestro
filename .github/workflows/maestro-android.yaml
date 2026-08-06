@@ -1,0 +1,60 @@
+name: Maestro Android E2E
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  maestro:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Install Maestro
+        run: |
+          curl -fsSL https://get.maestro.mobile.dev | bash
+          echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+      - name: Run Maestro tests on Android Emulator
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          emulator-options: -no-window -gpu swiftshader_indirect
+          script: |
+            adb devices
+
+            # Install your APK
+            adb install apk/app-release.apk
+
+            # Verify Maestro installation
+            maestro --version
+
+            # Run all flows
+            maestro test \
+              -e APP_ID="$APP_ID" \
+              -e TEST_EMAIL="$TEST_EMAIL" \
+              flows
+
+      - name: Upload Maestro artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-results
+          path: |
+            build/maestro-results
+            .maestro/screenshots

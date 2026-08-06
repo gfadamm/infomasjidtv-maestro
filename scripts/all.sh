@@ -22,7 +22,7 @@ source "$ENV_FILE"
 set +a
 
 maestro --device ${DEVICE_ID} test \
-  --config "$PROJECT_DIR/.maestro/config.yaml" \
+  --config "$PROJECT_DIR/config.yaml" \
   --debug-output "$PROJECT_DIR/build/maestro-debug" \
   --format html \
   --output "$PROJECT_DIR/build/maestro-report.html" \

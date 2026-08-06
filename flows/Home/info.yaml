@@ -1,0 +1,13 @@
+appId: ${APP_ID}
+name: 'Home - check home information is correct and available'
+tags:
+  - smoke
+---
+- launchApp:
+    clearState: true
+- launchApp:
+    clearState: true
+- runFlow: "../../subflows/login.yaml"
+- assertVisible: "Jadwal Shalat hari ini"
+- assertVisible: "Subuh"
+
