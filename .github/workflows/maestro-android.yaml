@@ -33,7 +33,7 @@ jobs:
       - name: Run Maestro tests on Android Emulator
         uses: ReactiveCircus/android-emulator-runner@v2
         with:
-          api-level: 33
+          api-level: 30
           target: google_apis
           arch: x86_64
           profile: pixel_6
@@ -47,11 +47,15 @@ jobs:
           disable-animations: true
           script: |
             adb wait-for-device
-            
+
+            echo "Connected devices:"
             adb devices
 
+            echo "Android version:"
+            adb shell getprop ro.build.version.release
+
             # Install your APK
-            adb install apk/app-release.apk
+            adb install -r apk/app-release.apk
 
             # Verify Maestro installation
             maestro --version
