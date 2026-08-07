@@ -47,11 +47,6 @@ jobs:
           disable-animations: true
           script: |
             adb wait-for-device
-
-            # Wait until boot is completed
-            while [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" != "1" ]; do
-              sleep 5
-            done
             
             adb devices
 
