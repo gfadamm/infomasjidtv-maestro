@@ -49,7 +49,7 @@ jobs:
             adb wait-for-device
 
             # Wait until boot is completed
-            until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
+            while [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" != "1" ]; do
               sleep 5
             done
             
